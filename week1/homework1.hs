@@ -2,7 +2,7 @@
 toDigits :: Integer -> [Integer]
 toDigits n
     | n <= 0 = []
-    | otherwise = toDigits (n `div` 10) ++  (n `mod` 10) : []
+    | otherwise = toDigits (n `div` 10) ++  [(n `mod` 10)]
 
 toDigitsRev :: Integer -> [Integer]
 toDigitsRev = reverse . toDigits
@@ -16,10 +16,10 @@ toDigitsRev = reverse . toDigits
 doubleEveryOtherFromFront :: [Integer] -> [Integer]
 doubleEveryOtherFromFront [] = []
 doubleEveryOtherFromFront (x:y:t) = x : y * 2 : (doubleEveryOtherFromFront t)
-doubleEveryOtherFromFront [x] = x : []
+doubleEveryOtherFromFront x = x
 
 doubleEveryOther :: [Integer] -> [Integer]
-doubleEveryOther lst = reverse $ doubleEveryOtherFromFront (reverse lst) 
+doubleEveryOther lst = reverse $ doubleEveryOtherFromFront $ reverse lst
 
 -- doubleEveryOther [8,7,6,5] == [16,7,12,5]
 -- doubleEveryOther [1,2,3] == [1,4,3]
